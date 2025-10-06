@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "jesuswebsite"
+version = "0.1.0"
+description = "Jesus configuration on flash/dash"
+authors = ["anderson.tuestas@gmail.com"]
+license = "MIT"
+readme = "README.md"
+package-mode = false 
+
+[tool.poetry.dependencies]
+python = "3.11.10"
+dash = "^3.2.0"
+flash = "^1.0.3"
+pandas = "^2.3.3"
+numpy = "^2.3.3"
+dash-mantine-components = "^2.3.0"
+matplotlib = "^3.10.6"
+plotly = "^6.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
