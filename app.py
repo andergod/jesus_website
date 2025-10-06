@@ -7,33 +7,33 @@ app = dash.Dash(__name__, use_pages=True)
 app.layout = dmc.MantineProvider(
     theme={"colorScheme": "light"},
     children=[
-        dmc.Header(
-            height=60,
-            padding="xs",
-            children=dmc.Group(
-                position="apart",
-                align="center",
-                style={"height": "100%"},
-                children=[
-                    dmc.Text("My Dash App", weight=700, size="xl"),
-                    dmc.Group(
-                        spacing="md",
-                        children=[
-                            dmc.Anchor(page["name"], href=page["path"])
-                            for page in dash.page_registry.values()
-                        ],
-                    ),
-                ],
+        # Top header built from HTML + Mantine components (dmc.Header isn't available in this env)
+        html.Header(
+            dmc.Container(
+                dmc.Group(
+                    align="center",
+                    style={"height": "60px", "display": "flex", "alignItems": "center"},
+                    children=[
+                        dmc.Text("Personal Portfolio", size="xl"),
+                        dmc.Group(
+                            gap="md",
+                            children=[
+                                dmc.Anchor(page["name"], href=page["path"])
+                                for page in dash.page_registry.values()
+                            ],
+                        ),
+                    ],
+                ),
+                fluid=True,
+                style={"paddingTop": "6px", "paddingBottom": "6px"},
             ),
+            style={"boxShadow": "0 1px 3px rgba(0,0,0,0.08)", "zIndex": 10},
         ),
         dcc.Location(id="url"),
-        html.Div(id="page-content"),
-    ],)
+        dash.page_container,
+    ],
+)
 
-@callback(Output("page-content", "children"), [Input("url", "pathname")])
-def display_page(pathname):
-    return dash.page_registry.get(pathname, dash.page_registry["/"])["layout"](
-          )
 
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    app.run(debug=True)
