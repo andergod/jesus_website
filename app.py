@@ -14,12 +14,17 @@ app.layout = dmc.MantineProvider(
                     align="center",
                     style={"height": "60px", "display": "flex", "alignItems": "center"},
                     children=[
-                        dmc.Text("Personal Portfolio", size="xl"),
+                        dmc.Text("Jesus Personal Portfolio", size="xl"),
                         dmc.Group(
                             gap="md",
                             children=[
-                                dmc.Anchor(page["name"], href=page["path"])
+                                dcc.Link(
+                                    page["name"],
+                                    href=page["path"],
+                                    style={"textDecoration": "none"},
+                                )
                                 for page in dash.page_registry.values()
+                                if page["name"] == "Home"
                             ],
                         ),
                     ],

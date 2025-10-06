@@ -7,22 +7,22 @@ dash.register_page(__name__, path="/", name="Home")
 # Example project data - replace or extend with real projects
 PROJECTS = [
     {
-        "title": "Alpha Signals Engine",
-        "summary": "Research and productionisation of alpha factors using alternative data and signal blending.",
-        "tags": ["signal", "research", "production"],
-        "link": "/projects/alpha-signals",
+        "title": "Order Book Contruction",
+        "summary": "Recreate the logic of a matching engine and build a full order book from raw market data using market standard C++ techniques.",
+        "tags": ["C++", "order books", "execution", "low-latency"],
+        "link": "/projects/order-book",
     },
     {
-        "title": "Execution Cost Model",
-        "summary": "Microstructure-aware execution cost modelling and transaction cost analysis (TCA).",
-        "tags": ["execution", "tca", "microstructure"],
-        "link": "/projects/execution-cost",
+        "title": "Webscrapping & Sentiment Analysis",
+        "summary": "Modified a standard webscrapping structure using beutifulsoup4 and requests to collect and analyse sentiment from crypto-magazines.",
+        "tags": ["python", "webscrapping", "sentiment analysis"],
+        "link": "/projects/webscrapping-crypto",
     },
     {
-        "title": "Risk & Exposure Dashboard",
-        "summary": "Real-time exposures, P&L attribution and stress testing dashboards for traders and PMs.",
-        "tags": ["dashboard", "risk", "visualisation"],
-        "link": "/projects/risk-dashboard",
+        "title": "Some interesting macro graphs",
+        "summary": "Visualization usage and interpretation of various macroeconomic indicators.",
+        "tags": ["matplotlib", "macroeconomic", "visualisation"],
+        "link": "/projects/macro-graphs",
     },
 ]
 
@@ -40,7 +40,7 @@ def project_card(p):
                         style={"marginLeft": "auto"},
                     ),
                 ],
-                justify="space-around",
+                style={"justifyContent": "space-between"},
             ),
             dmc.Space(h=8),
             dmc.Text(p["summary"], style={"color": "#555"}, size="sm"),
@@ -51,77 +51,69 @@ def project_card(p):
                         dmc.Button("Open", variant="outline", size="sm"), href=p["link"]
                     ),
                     dcc.Link(dmc.Button("Details", size="sm"), href=p["link"]),
-                ]
+                ],
+                style={"gap": "0.5rem"},
             ),
         ],
         shadow="sm",
-        padding="lg",
         radius="md",
-        style={"minWidth": 300},
+        style={"minWidth": 300, "padding": "1.5rem"},
     )
 
 
 layout = dmc.Container(
     size="xl",
-    px="md",
+    style={"padding": "0 1rem"},
     children=[
         dmc.Space(h=20),
         # Hero
-        dmc.Grid(
+        dmc.SimpleGrid(
             [
-                dmc.GridCol(
-                    dmc.Stack(
-                        [
-                            dmc.Title(
-                                "Quant Portfolio - Research & Engineering", order=1
-                            ),
-                            dmc.Text(
-                                "Research engineer working on systematic strategies, execution, risk systems, and data science for a quantitative hedge fund.",
-                                style={"color": "#555"},
-                            ),
-                            dmc.Space(h=10),
-                            dmc.Group(
-                                [
-                                    dcc.Link(
-                                        dmc.Button(
-                                            "Projects",
-                                            variant="gradient",
-                                            gradient={"from": "indigo", "to": "cyan"},
-                                        ),
-                                        href="/projects",
+                dmc.Stack(
+                    [
+                        dmc.Title("Quant Portfolio - Research & Engineering", order=1),
+                        dmc.Text(
+                            "Research engineer working on systematic strategies, execution, risk systems, and data science for a quantitative hedge fund.",
+                            style={"color": "#555"},
+                        ),
+                        dmc.Space(h=10),
+                        dmc.Group(
+                            [
+                                dcc.Link(
+                                    dmc.Button(
+                                        "Projects",
+                                        variant="gradient",
+                                        gradient={"from": "indigo", "to": "cyan"},
                                     ),
-                                    dcc.Link(
-                                        dmc.Button("Resume / CV", variant="outline"),
-                                        href="/resume",
-                                    ),
-                                ]
-                            ),
-                        ]
-                    ),
-                    span={12: 7, "md": 8},
+                                    href="/projects",
+                                ),
+                                dcc.Link(
+                                    dmc.Button("Resume / CV", variant="outline"),
+                                    href="/resume",
+                                ),
+                            ]
+                        ),
+                    ]
                 ),
-                dmc.GridCol(
-                    dmc.Card(
-                        children=[
-                            dmc.Image(
-                                src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80",
-                                alt="finance",
-                                radius="sm",
-                            ),
-                            dmc.Text(
-                                "Quantitative research • Execution • Data engineering",
-                                ta="center",
-                                size="sm",
-                                style={"color": "#555"},
-                            ),
-                        ],
-                        shadow="sm",
-                        padding="md",
-                    ),
-                    span={12: 5, "md": 4},
+                dmc.Card(
+                    children=[
+                        dmc.Image(
+                            src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80",
+                            alt="finance",
+                            radius="sm",
+                        ),
+                        dmc.Text(
+                            "Quantitative research • Execution • Data engineering",
+                            ta="center",
+                            size="sm",
+                            style={"color": "#555"},
+                        ),
+                    ],
+                    shadow="sm",
+                    padding="md",
                 ),
             ],
-            gutter="xl",
+            cols=2,
         ),
         dmc.Space(h=30),
         # Projects section
@@ -134,8 +126,7 @@ layout = dmc.Container(
         dmc.Space(h=12),
         dmc.SimpleGrid(
             [project_card(p) for p in PROJECTS],
-            cols={"sm": 1, "md": 2, "lg": 3},
-            spacing="lg",
+            cols=3,
         ),
         dmc.Space(h=30),
         # Resume section
@@ -177,19 +168,16 @@ layout = dmc.Container(
                     gap="xs",
                     align="center",
                 ),
-                dmc.GridCol(
-                    dmc.Card(
-                        [
-                            dmc.Text("Experience snapshot", size="md"),
-                            dmc.Space(h=8),
-                            dmc.Text(
-                                "- 4+ years at systematic hedge funds\n- Python, C++, SQL, cloud infra\n- Time-series statistics & ML"
-                            ),
-                        ],
-                        padding="md",
-                        shadow="xs",
-                    ),
-                    span=4,
+                dmc.Card(
+                    [
+                        dmc.Text("Experience snapshot", size="md"),
+                        dmc.Space(h=8),
+                        dmc.Text(
+                            "- 4+ years at systematic hedge funds\n- Python, C++, SQL, cloud infra\n- Time-series statistics & ML"
+                        ),
+                    ],
+                    shadow="xs",
+                    style={"width": "300px", "padding": "1rem"},
                 ),
             ],
             gap="lg",
