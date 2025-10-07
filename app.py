@@ -1,6 +1,9 @@
 import dash
 from dash import html, dcc, Input, Output, callback
 import dash_mantine_components as dmc
+from flask import Flask
+
+server = Flask(__name__)
 
 app = dash.Dash(__name__, use_pages=True)
 
