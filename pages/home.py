@@ -105,7 +105,7 @@ layout = dmc.Container(
                             fit="contain",
                         ),
                         dmc.Text(
-                            "Quantitative research • Execution • Data engineering",
+                            "Quantitative analysis • Execution • Data engineering",
                             ta="center",
                             size="sm",
                             style={"color": "#555"},
