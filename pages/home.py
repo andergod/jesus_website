@@ -73,12 +73,12 @@ layout = dmc.Container(
                     [
                         dmc.Title("Quant Portfolio - Research & Engineering", order=1),
                         dmc.Text(
-                            "Research engineer working on systematic strategies, execution, risk systems, and data science for a quantitative hedge fund.",
+                            "A few projects that showcase my skills in quantitative research, data engineering, and software development within execution trading and data science.",
                             style={"color": "#555"},
                         ),
                         dmc.Space(h=10),
                         dmc.Group(
-                            [
+                            children=[
                                 dcc.Link(
                                     dmc.Button(
                                         "Projects",
@@ -87,9 +87,10 @@ layout = dmc.Container(
                                     ),
                                     href="/projects",
                                 ),
-                                dcc.Link(
+                                dmc.Anchor(
                                     dmc.Button("Resume / CV", variant="outline"),
-                                    href="/resume",
+                                    href="/assets/Jesus_Anderson_Tuesta_Soto.pdf",
+                                    target="_blank",
                                 ),
                             ]
                         ),
@@ -98,9 +99,10 @@ layout = dmc.Container(
                 dmc.Card(
                     children=[
                         dmc.Image(
-                            src="https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&q=80",
+                            src="assets/linkedInProfilePic.png",
                             alt="finance",
-                            radius="sm",
+                            h=200,
+                            fit="contain",
                         ),
                         dmc.Text(
                             "Quantitative research • Execution • Data engineering",
@@ -110,7 +112,6 @@ layout = dmc.Container(
                         ),
                     ],
                     shadow="sm",
-                    padding="md",
                 ),
             ],
             cols=2,
@@ -128,7 +129,7 @@ layout = dmc.Container(
             [project_card(p) for p in PROJECTS],
             cols=3,
         ),
-        dmc.Space(h=30),
+        dmc.Space(h=80),
         # Resume section
         dmc.Group(
             [
@@ -138,29 +139,46 @@ layout = dmc.Container(
                         dmc.Text(
                             "A short summary of professional experience and a downloadable CV."
                         ),
+                        dmc.Container(
+                            dmc.Card(
+                                [
+                                    dmc.Text(
+                                        "- 2 years at systematic hedge funds\n- Python, C++, SQL, KDB+ \n- Exeution & Data engineering",
+                                    ),
+                                ],
+                                shadow="xs",
+                                style={
+                                    "width": "1000px",
+                                    "padding": "1rem",
+                                    "alignItems": "center",
+                                },
+                            ),
+                        ),
                         dmc.List(
                             [
                                 dmc.ListItem(
-                                    "Quantitative Research & Strategy Development - signal research and model evaluation"
+                                    "Systematic Strategy Design & Optimization – implemented rolling-window frameworks to adapt to shifting market regimes"
                                 ),
                                 dmc.ListItem(
-                                    "Execution & Transaction Cost Analysis - slippage modelling and smart order routing"
+                                    "Execution & Transaction Cost Analysis – automated TCA processes to monitor slippage, optimize routing, and reduce trading costs across listed and OTC markets"
                                 ),
                                 dmc.ListItem(
-                                    "Data Engineering - pipelines for alternative and market data"
+                                    "Data Engineering & Infrastructure – built scalable analytics platforms and real-time dashboards in Python, KDB+, and C++; integrated low-latency pipelines to support execution logic, and research scalability"
                                 ),
                             ]
                         ),
                         dmc.Space(h=8),
                         dmc.Group(
-                            [
-                                dcc.Link(
-                                    dmc.Button("View full resume", variant="outline"),
-                                    href="/resume",
+                            children=[
+                                dmc.Anchor(
+                                    dmc.Button("Download CV", variant="outline"),
+                                    href="/assets/Jesus_Anderson_Tuesta_Soto.pdf",
+                                    target="_blank",
                                 ),
                                 dcc.Link(
-                                    dmc.Button("Download CV (PDF)", variant="filled"),
-                                    href="/assets/cv.pdf",
+                                    dmc.Button("LinkedIn"),
+                                    href="https://www.linkedin.com/in/jesus-tuesta/",
+                                    target="_blank",
                                 ),
                             ]
                         ),
@@ -168,24 +186,11 @@ layout = dmc.Container(
                     gap="xs",
                     align="center",
                 ),
-                dmc.Card(
-                    [
-                        dmc.Text("Experience snapshot", size="md"),
-                        dmc.Space(h=8),
-                        dmc.Text(
-                            "- 4+ years at systematic hedge funds\n- Python, C++, SQL, cloud infra\n- Time-series statistics & ML"
-                        ),
-                    ],
-                    shadow="xs",
-                    style={"width": "300px", "padding": "1rem"},
-                ),
             ],
-            gap="lg",
-            align="center",
         ),
         dmc.Space(h=40),
         html.Footer(
-            dmc.Text("© Your Name — Built with Dash & Mantine", size="sm"),
+            dmc.Text("© Jesus Tuesta — Built with Dash & Mantine", size="sm"),
         ),
     ],
 )
