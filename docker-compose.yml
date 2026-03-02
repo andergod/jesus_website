@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  dash:
+    build: .
+    container_name: dash_app
+    expose:
+      - "8050"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - dash

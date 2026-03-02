@@ -1,6 +1,7 @@
 # AWS acces
 *.pem
 connectToSSH.txt
+nignx/certs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
