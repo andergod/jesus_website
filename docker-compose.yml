@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   dash:
-    build: .
+    image: 908027402569.dkr.ecr.eu-north-1.amazonaws.com/my_dah_app:latest
     container_name: dash_app
     expose:
       - "8050"
