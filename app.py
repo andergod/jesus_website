@@ -4,8 +4,37 @@ import dash_mantine_components as dmc
 from flask import Flask
 
 
-app = dash.Dash(__name__, use_pages=True)
+app = dash.Dash(
+    __name__,
+    external_scripts=[
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+    ],
+    external_stylesheets=[
+        "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+    ],
+    use_pages=True,
+)
 server = app.server
+
+app.index_string = """
+<!DOCTYPE html>
+<html>
+    <head>
+        {%metas%}
+        {%title%}
+        {%favicon%}
+        {%css%}
+    </head>
+    <body>
+        {%app_entry%}
+        <script>hljs.highlightAll();</script>
+        {%config%}
+        {%scripts%}
+        {%renderer%}
+    </body>
+</html>
+"""
+
 
 app.layout = dmc.MantineProvider(
     theme={"colorScheme": "light"},
@@ -44,4 +73,5 @@ app.layout = dmc.MantineProvider(
 
 
 if __name__ == "__main__":
+    # app.run(debug=True)
     app.run(debug=False, port=8050, host="0.0.0.0")

@@ -10,6 +10,21 @@ dash.register_page(__name__, path="/projects", name="Projects")
 
 DETAILED_PROJECTS = [
     {
+        "title": "Bar Generation",
+        "summary": "A high-performance C++ application for real-time bar construction from tick data, using Boost.Beast to manage a secure WebSocket connection.",
+        "description": """This project showcases a C++ implementation for consuming real-time financial data and generating bars (e.g., OHLC). It leverages the Boost.Beast library to establish a secure WebSocket connection, demonstrating fine-grained control over the entire networking process. The implementation explicitly handles DNS resolution, TCP connection, the TLS/SSL handshake, and the HTTP upgrade to a persistent WebSocket stream. Incoming tick data is then read and processed on the fly, highlighting the performance benefits of C++ for latency-sensitive data processing.""",
+        "tech_stack": [
+            "C++",
+            "CMake",
+            "Boost::beast",
+            "Environmental variables",
+            "Networking",
+        ],
+        "tags": ["networking", "bar construction", "tick data"],
+        "demo_link": "/projects/bar-generation",
+        "github_link": "https://github.com/andergod/OrderBookSimulator.git",
+    },
+    {
         "title": "Order Book Construction",
         "summary": "A high-performance order book implementation that recreates the logic of a matching engine using market standard C++ techniques.",
         "description": """
@@ -23,13 +38,12 @@ DETAILED_PROJECTS = [
         "tech_stack": [
             "C++",
             "CMake",
-            "Google Test",
             "Memory Management",
             "Data Structures",
         ],
         "tags": ["order books", "execution", "low-latency"],
         "demo_link": "/projects/order-book",
-        "github_link": "https://github.com/yourusername/orderbook",
+        "github_link": "https://github.com/andergod/OrderBookSimulator.git",
     },
     {
         "title": "Webscrapping & Sentiment Analysis",
@@ -46,22 +60,6 @@ DETAILED_PROJECTS = [
         "tags": ["webscrapping", "sentiment analysis", "nlp"],
         "demo_link": "/projects/webscrapping-crypto",
         "github_link": "https://github.com/andergod/Webscrap_crypto",
-    },
-    {
-        "title": "Macro Analysis Dashboard",
-        "summary": "Interactive visualization and analysis of key macroeconomic indicators.",
-        "description": """
-        A comprehensive dashboard for analyzing and visualizing macroeconomic data. 
-        Features include:
-        • Time series analysis of key indicators
-        • Cross-market correlation analysis
-        • Interactive data exploration
-        • Automated data updates and processing
-        """,
-        "tech_stack": ["Python", "Matplotlib", "Pandas", "Dash", "SQL"],
-        "tags": ["macroeconomic", "visualisation", "dashboard"],
-        "demo_link": "/projects/macro-graphs",
-        "github_link": "https://github.com/yourusername/macro-dashboard",
     },
 ]
 

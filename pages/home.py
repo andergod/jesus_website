@@ -7,6 +7,12 @@ dash.register_page(__name__, path="/", name="Home")
 # Example project data - replace or extend with real projects
 PROJECTS = [
     {
+        "title": "Bar Generation through Boost::Beast",
+        "summary": "Bar construction using Boost::Beast through Alpaca, leveraging C++ websockets and taking advantage of the language’s speed to generate bars on the fly.",
+        "tags": ["networking", "bar construction", "tick data"],
+        "link": "/projects/bar-generation",
+    },
+    {
         "title": "Order Book Contruction",
         "summary": "Recreate the logic of a matching engine and build a full order book from raw market data using market standard C++ techniques.",
         "tags": ["C++", "order books", "execution", "low-latency"],
@@ -17,12 +23,6 @@ PROJECTS = [
         "summary": "Modified a standard webscrapping structure using beutifulsoup4 and requests to collect and analyse sentiment from crypto-magazines.",
         "tags": ["python", "webscrapping", "sentiment analysis"],
         "link": "/projects/webscrapping-crypto",
-    },
-    {
-        "title": "Some interesting macro graphs",
-        "summary": "Visualization usage and interpretation of various macroeconomic indicators.",
-        "tags": ["matplotlib", "macroeconomic", "visualisation"],
-        "link": "/projects/macro-graphs",
     },
 ]
 
