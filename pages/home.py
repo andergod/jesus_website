@@ -8,7 +8,7 @@ dash.register_page(__name__, path="/", name="Home")
 PROJECTS = [
     {
         "title": "Bar Generation through Boost::Beast",
-        "summary": "Bar construction using Boost::Beast through Alpaca, leveraging C++ websockets and taking advantage of the language’s speed to generate bars on the fly.",
+        "summary": "A high‑performance C++ application designed for real‑time bar construction from tick data. It uses Boost.Beast to maintain a secure WebSocket connection, ensuring fast and reliable data ingestion. The system also leverages the Parquet library to store output in the Parquet format, enabling efficient processing, compact storage, and easy retrieval for later analysis.",
         "tags": ["networking", "bar construction", "tick data"],
         "link": "/projects/bar-generation",
     },

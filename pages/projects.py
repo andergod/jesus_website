@@ -11,7 +11,7 @@ dash.register_page(__name__, path="/projects", name="Projects")
 DETAILED_PROJECTS = [
     {
         "title": "Bar Generation",
-        "summary": "A high-performance C++ application for real-time bar construction from tick data, using Boost.Beast to manage a secure WebSocket connection.",
+        "summary": "A high‑performance C++ application designed for real‑time bar construction from tick data. It uses Boost.Beast to maintain a secure WebSocket connection, ensuring fast and reliable data ingestion. The system also leverages the Parquet library to store output in the Parquet format, enabling efficient processing, compact storage, and easy retrieval for later analysis.",
         "description": """This project showcases a C++ implementation for consuming real-time financial data and generating bars (e.g., OHLC). It leverages the Boost.Beast library to establish a secure WebSocket connection, demonstrating fine-grained control over the entire networking process. The implementation explicitly handles DNS resolution, TCP connection, the TLS/SSL handshake, and the HTTP upgrade to a persistent WebSocket stream. Incoming tick data is then read and processed on the fly, highlighting the performance benefits of C++ for latency-sensitive data processing.""",
         "tech_stack": [
             "C++",

@@ -75,6 +75,7 @@ layout = dmc.Container(
                                 We also maintain `best_bid` and `best_ask`, which are the key determinants of
                                 whether an incoming order matches immediately or rests in the book. These
                                 elements form the essential backbone of any high‑performance order book.""",
+                            style={"textAlign": "justify", "marginBottom": 10},
                         ),
                         dcc.Markdown(
                             """
@@ -148,7 +149,8 @@ layout = dmc.Container(
                      which allow to keep the order on scope even though they get eliminated, and the pointers are still on scope 
                      when deleting. However, this comes as a cost, the orders no longer live on the array itself (cache), no, as a share_ptr they 
                      live on the stack reducing the potential performance of our output. 
-                     """
+                     """,
+                    style={"textAlign": "justify", "marginBottom": 10},
                 ),
                 dcc.Markdown(
                     """
@@ -200,7 +202,8 @@ layout = dmc.Container(
 
                     This approach preserves the flexibility of a linked list while significantly improving spatial locality and reducing allocation 
                     overhead, giving us predictable performance without the drawbacks of a deque’s block‑segmented design.
-                    """
+                    """,
+                    style={"textAlign": "justify", "marginBottom": 10},
                 ),
                 dcc.Markdown(
                     """
@@ -236,6 +239,46 @@ layout = dmc.Container(
                         std::vector<tradeRecord> trades;
                     };
                     """
+                ),
+                dmc.Title("Order pool implementation: "),
+                dmc.Text(
+                    """
+                         Apart from using a link list, we use an memory pool named orderPool that will improve our performance.
+                         The OrderPool implements a lightweight, high‑performance memory pool for OrderIntrusive objects used inside the intrusive order‑book linked list. Instead of allocating and freeing orders from the heap, the pool pre‑allocates a fixed block of objects and manages them through a simple free‑list. This eliminates dynamic allocations during real‑time processing and guarantees stable memory addresses for intrusive pointers.
+                        When the pool is created, it allocates a contiguous vector of OrderIntrusive objects and pushes their addresses into the freeList. Calling allocate() pops an available object from the list, overwrites it with the new order data, and returns a pointer to the pre‑existing memory slot. When an order is removed from the book, deallocate() simply returns the pointer back to the free‑list for reuse.
+                        This design avoids fragmentation, ensures deterministic allocation cost, and keeps intrusive links valid throughout the object’s lifetime. It’s a straightforward and efficient approach for high‑frequency order‑book operations where performance and pointer stability are critical.
+                         """,
+                    style={"textAlign": "justify", "marginBottom": 10},
+                ),
+                dcc.Markdown(
+                    """
+                    ```cpp
+                            OrderPool::OrderPool(std::int32_t size)
+                            {
+                                pool.resize(size);
+                                for (auto &order : pool)
+                                {
+                                    freeList.push_back(&order);
+                                }
+                            }
+
+                            OrderIntrusive *OrderPool::allocate(std::int32_t id, std::int32_t quantity, std::chrono::system_clock::time_point timestamp)
+                            {
+                                if (freeList.empty())
+                                {
+                                    throw std::bad_alloc();
+                                }
+                                OrderIntrusive *order = freeList.back();
+                                freeList.pop_back();
+                                *order = OrderIntrusive(id, quantity, timestamp);
+                                return order;
+                            }
+
+                            void OrderPool::deallocate(OrderIntrusive *order)
+                            {
+                                freeList.push_back(order);
+                            }
+                             """
                 ),
             ]
         ),
