@@ -13,7 +13,7 @@ app = dash.Dash(
         "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
     ],
     use_pages=True,
-    title="Jesus Personal Portfolio",
+    title=" ",
 )
 server = app.server
 
