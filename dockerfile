@@ -24,4 +24,4 @@ COPY . .
 
 EXPOSE 8050
 
-CMD ["python", "app.py"]
+CMD ["gunicorn", "app:server", "--workers", "4", "--bind", "0.0.0.0:8050"]
